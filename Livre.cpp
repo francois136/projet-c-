@@ -6,6 +6,27 @@ void Livre::changer_etat(nouvel_etat){
     etat = nouvel_etat;
 }
 
+Livre::Livre(){
+    code = 0;
+    auteur = "";
+    titre = "";
+    editeur = "";
+    isbn = "";
+    publics = "";
+    etat = "";
+    bibliothequeOrigine = null;
+}
+Livre::Livfre(int c,string a,string t,string ed,string i,string p,string e ,Bibliotheque b){
+    code = c;
+    auteur = a;
+    titre = t;
+    editeur = ed;
+    isbn = i;
+    publics = p;
+    etat = e;
+    bibliothequeOrigine = b;
+}
+
 void Livre::afficher_details(){
     cout << "code : " << code << endl;
     cout << "auteur : " << auteur << endl;
@@ -46,8 +67,4 @@ string Livre::getetat(){
 
 Bibliotheque Livre::getbibliotheque(){
     return bibliotheque;
-}
-
-void Livre::setetat(nouveletat){
-    etat = nouveletat;
 }
