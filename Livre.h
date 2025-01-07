@@ -13,8 +13,20 @@ class Livre{
         strign etat;
         Bibliotheque bibliothequeOrigine;
     public:
-        changer_etat(nouvel_etat);
-        afficher_details();
+        void changer_etat(nouvel_etat);
+        void afficher_details();
+        
+        int getcode();
+        string getauteur();
+        string gettitre();
+        string getediteur();
+        string getisbn();
+        string getpublics();
+        string getetat();
+        string getbibliotheque();
+
+        string setetat();
+        
 }
 
 #endif
