@@ -14,6 +14,8 @@ class Livre{
         string etat;
         Bibliotheque bibliothequeOrigine;
     public:
+        Livfre(int,string,string,string,string,string,string,Bibliotheque);
+        Livre();
         void changer_etat(nouvel_etat);
         void afficher_details();
         
@@ -26,7 +28,15 @@ class Livre{
         string getetat();
         Bibliotheque getbibliotheque();
 
-        void setetat();
+        void setcode(int);
+        void setauteur(string);
+        void settitre(string);
+        void setediteur(string);
+        void setisbn(string);
+        void setpublics(string);
+        void setetat(string);
+        void setbibliotheque(Bibliotheque);
+
         
 }
 
