@@ -1,6 +1,7 @@
 #ifndef LIVRE_H
 #define LIVRE_H
 #include BIBLIOTHEQUE_H
+#include <string>
 using namespace std;
 
 class Livre{
