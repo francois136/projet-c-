@@ -1,4 +1,5 @@
 #ifndef LIVRE_H
+#define LIVRE_H
 using namespace std;
 
 class Livre{
@@ -15,3 +16,5 @@ class Livre{
         changer_etat(nouvel_etat);
         afficher_details();
 }
+
+#endif
