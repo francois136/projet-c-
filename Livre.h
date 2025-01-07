@@ -1,5 +1,6 @@
 #ifndef LIVRE_H
 #define LIVRE_H
+#include BIBLIOTHEQUE_H
 using namespace std;
 
 class Livre{
@@ -23,9 +24,9 @@ class Livre{
         string getisbn();
         string getpublics();
         string getetat();
-        string getbibliotheque();
+        Bibliotheque getbibliotheque();
 
-        string setetat();
+        void setetat();
         
 }
 
