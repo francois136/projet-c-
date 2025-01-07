@@ -4,16 +4,16 @@
 using namespace std;
 
 // Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-Album::BandeDessinee(string auteur, string titre, string editeur, string isbn, string dessinateur)
-    : Livre(auteur, titre, editeur, isbn), dessinateur(dessinateur) {}
+Album::BandeDessinee(string auteur, string titre, string editeur, string isbn, string typeIllustration)
+    : Livre(auteur, titre, editeur, isbn), typeIllustration(typeIllustration) {}
 
 // Constructeur de recopie
-Album::BandeDessinee(Livre* livre, string dessinateur)
-    : Livre(livre), dessinateur(dessinateur) {}
+Album::BandeDessinee(Livre* livre, string typeIllustration)
+    : Livre(livre), typeIllustration(typeIllustration) {}
 
 // Getter pour le genre
-string Album::getTypeIllustration() {
-    return dessinateur;
+string Album::gettypeillustration() {
+    return typeIllustration;
 }
 
 // Setter pour le genre
