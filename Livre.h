@@ -11,7 +11,7 @@ class Livre{
         string editeur;
         string isbn;
         string publics;
-        strign etat;
+        string etat;
         Bibliotheque bibliothequeOrigine;
     public:
         void changer_etat(nouvel_etat);
