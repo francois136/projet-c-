@@ -22,7 +22,7 @@ void BandeDessinee::setDessinateur(string nouveauDessinateur) {
 }
 
 // Afficher les détails spécifiques à une bande dessinée
-void BandeDessinee::afficher_details() const {
+void BandeDessinee::afficher_details() {
     Livre::afficher_details(); // Appel de la méthode de la classe de base
     cout << "Dessinateur : " << dessinateur << endl;
 }
