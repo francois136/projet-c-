@@ -14,8 +14,8 @@ private:
     string nom;                             // Nom de la bibliothèque
     string adresse;                         // Adresse de la bibliothèque
     int code;                               // Code unique de la bibliothèque
-    list<Livre> listeLivres;                // Liste chaînée de livres stockés
-    list<Adherent> listeAdherents;          // Liste chaînée des adhérents inscrits
+    Livre* listeLivres;                // Liste chaînée de livres stockés
+    Adherent* listeAdherents;          // Liste chaînée des adhérents inscrits
     int capaciteMax;                        // Capacité maximale de la bibliothèque (par défaut 100)
     int nombreLivres;                       // Nombre de livres disponibles dans la bibliothèque (par défaut 15)
 
@@ -40,8 +40,8 @@ public:
     string getNom() const;
     string getAdresse() const;
     int getCode() const;
-    list<Livre> getListeLivres() const;
-    list<Adherent> getListeAdherents() const;
+    Livre* getListeLivres() const;
+    Adherent* getListeAdherents() const;
     int getCapaciteMax() const;
     int getNombreLivres() const;
 
