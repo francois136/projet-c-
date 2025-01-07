@@ -16,3 +16,38 @@ void Livre::afficher_details(){
     cout << "état : " << etat << endl;
     cout << "bibliothèque" << bibliotheque << endl;
 }
+
+int Livre::getcode(){
+    return code;
+}
+string Livre::getauteur(){
+    return code;
+}
+
+string Livre::gettitre(){
+    return titre;
+}
+
+string Livre::getediteur(){
+    return editeur;
+}
+
+string Livre::getisbn(){
+    return isbn;
+}
+
+string Livre::getpublics(){
+    return publics;
+}
+
+string Livre::getetat(){
+    return etat;
+}
+
+Bibliotheque Livre::getbibliotheque(){
+    return bibliotheque;
+}
+
+void Livre::setetat(nouveletat){
+    etat = nouveletat;
+}
