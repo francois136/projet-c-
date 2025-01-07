@@ -8,7 +8,7 @@ class Livre{
         string titre;
         string editeur;
         string isbn;
-        string public;
+        string publics;
         strign etat;
         Bibliotheque bibliothequeOrigine;
     public:
