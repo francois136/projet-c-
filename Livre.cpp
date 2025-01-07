@@ -10,13 +10,9 @@ void Livre::afficher_details(){
     cout << "code : " << code << endl;
     cout << "auteur : " << auteur << endl;
     cout << "titre : " << titre << endl;
-    cout << "e"
+    cout << "editeur : " << editeur << endl;
+    cout << "numéro isbn : " << isbn << endl;
+    cout << "public : " << publics << endl;
+    cout << "état : " << etat << endl;
+    cout << "bibliothèque" << bibliotheque << endl;
 }
-        int code;
-        string auteur;
-        string titre;
-        string editeur;
-        string isbn;
-        string public;
-        strign etat;
-        Bibliotheque bibliothequeOrigine;
