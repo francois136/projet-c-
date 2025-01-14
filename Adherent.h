@@ -12,6 +12,7 @@ class Adherent{
     Bibliotheque bibliotheque;
     list<Livre> Livresempruntes;
     int maxLivres;
+    Adherent* suivant;
   public:
     Adherent(string,string,string,int,Bibliotheque,int);
     Adherent(Bibliotheque);
@@ -31,7 +32,7 @@ class Adherent{
     void setadresse(string);
     void setnumero(int);
     void setbibliotheque(Biblioteque);
-    doid setlivresempruntes(list<Livre>);
+    void setlivresempruntes(list<Livre>);
     void setmaxLivres(int);
 }
 
