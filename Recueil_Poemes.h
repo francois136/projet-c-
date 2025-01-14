@@ -4,7 +4,7 @@
 using namespace std;
 #include "Livre.h"
 
-class Receuil_Poemes:
+class Recueil_Poemes:
 		public Livre {
     private:
         string formatPoeme ;     // Nom de l'illustrateur
