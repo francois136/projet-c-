@@ -15,6 +15,8 @@ Livre::Livre(){
     publics = "";
     etat = "";
     bibliothequeOrigine = null;
+    suivant = nullptr;
+
 }
 Livre::Livfre(int c,string a,string t,string ed,string i,string p,string e ,Bibliotheque b){
     code = c;
@@ -25,6 +27,7 @@ Livre::Livfre(int c,string a,string t,string ed,string i,string p,string e ,Bibl
     publics = p;
     etat = e;
     bibliothequeOrigine = b;
+    suivant = nullptr;
 }
 
 void Livre::afficher_details(){
