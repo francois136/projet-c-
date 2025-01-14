@@ -22,7 +22,7 @@ private:
 public:
     // Constructeurs
     Bibliotheque();
-    Bibliotheque(const string& nom, const string& adresse, int code, int capaciteMax = 100, int nombreLivres = 15);
+    Bibliotheque(const string& nom, const string& adresse, int code, int capaciteMax = 100);
 
     // Méthodes
     void ajouterLivre(const Livre& livre);                 // Ajouter un livre à la bibliothèque
