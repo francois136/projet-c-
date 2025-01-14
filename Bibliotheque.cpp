@@ -1,145 +1,138 @@
 #include "Bibliotheque.h"
-#include "Livre.h"
 #include <iostream>
 #include <stdexcept>
 #include <algorithm>
+
 using namespace std;
 
 // Constructeur par défaut
-Bibliotheque::Bibliotheque() : nom(""), adresse(""), code(0), capaciteMax(100), nombreLivres(15) {}
+Bibliotheque::Bibliotheque()
+    : nom(""), adresse(""), code(0), listeLivres(nullptr), listeAdherents(nullptr),
+      capaciteMax(100), nombreLivres(15) {}
 
 // Constructeur paramétré
-Bibliotheque::Bibliotheque(string nom, string adresse, int code) 
-    : nom(nom), adresse(adresse), code(code), capaciteMax(100), nombreLivres(15) {}
+Bibliotheque::Bibliotheque(const string& nom, const string& adresse, int code, int capaciteMax, int nombreLivres)
+    : nom(nom), adresse(adresse), code(code), listeLivres(nullptr), listeAdherents(nullptr),
+      capaciteMax(capaciteMax), nombreLivres(nombreLivres) {}
 
-// Ajouter un livre
-void Bibliotheque::ajouterLivre(Livre* livre) {
+// Ajouter un livre à la bibliothèque
+void Bibliotheque::ajouterLivre(const Livre& livre) {
     if (nombreLivres >= capaciteMax) {
-        cout << "Erreur : La capacité maximale de la bibliothèque a été atteinte." << endl;
+        cout << "Erreur : La capacité maximale de la bibliothèque est atteinte." << endl;
         return;
     }
-    listeLivres.push_back(livre);
+
+    Livre* nouveauLivre = new Livre(livre); // Copie du livre
+    nouveauLivre->suivant = listeLivres;
+    listeLivres = nouveauLivre;
     nombreLivres++;
-    cout << "Livre \"" << livre->getTitre() << "\" ajouté avec succès." << endl;
+    cout << "Livre ajouté avec succès : " << livre.gettitre() << endl;
 }
 
-// Afficher tous les livres
-void Bibliotheque::afficherLivres() {
-    if (listeLivres.empty()) {
-        cout << "La bibliothèque ne contient aucun livre pour le moment." << endl;
-    } else {
-        cout << "Livres dans la bibliothèque \"" << nom << "\":" << endl;
-        for (const auto& livre : listeLivres) {
-            cout << "Code: " << livre->getCode() 
-                 << ", Titre: " << livre->getTitre() 
-                 << ", État: " << livre->getEtat() << endl;
-        }
+// Afficher les livres disponibles
+void Bibliotheque::afficherLivres() const {
+    if (!listeLivres) {
+        cout << "La bibliothèque ne contient aucun livre." << endl;
+        return;
+    }
+
+    Livre* courant = listeLivres;
+    cout << "Livres dans la bibliothèque : " << endl;
+    while (courant) {
+        courant->afficher_details();
+        courant = courant->suivant;
     }
 }
 
-// Acheter un livre
-void Bibliotheque::acheterLivre(Livre* livre) {
-    cout << "La bibliothèque \"" << nom << "\" achète le livre \"" << livre->getTitre() << "\"." << endl;
-    ajouterLivre(livre);
-}
-
-// Supprimer un livre par code
+// Supprimer un livre par son code
 void Bibliotheque::supprimerLivre(int codeLivre) {
-    auto it = find_if(listeLivres.begin(), listeLivres.end(), 
-                      [codeLivre](Livre* livre) { return livre->getCode() == codeLivre; });
-
-    if (it != listeLivres.end()) {
-        cout << "Livre \"" << (*it)->getTitre() << "\" supprimé avec succès." << endl;
-        listeLivres.erase(it);
-        nombreLivres--;
-    } else {
-        cout << "Erreur : Aucun livre avec le code " << codeLivre << " trouvé." << endl;
+    Livre** courant = &listeLivres;
+    while (*courant) {
+        if ((*courant)->getcode() == codeLivre) {
+            Livre* aSupprimer = *courant;
+            *courant = (*courant)->suivant;
+            delete aSupprimer;
+            nombreLivres--;
+            cout << "Livre avec le code " << codeLivre << " supprimé." << endl;
+            return;
+        }
+        courant = &((*courant)->suivant);
     }
+    cout << "Erreur : Livre avec le code " << codeLivre << " non trouvé." << endl;
 }
 
 // Ajouter un adhérent
-void Bibliotheque::ajouterAdherent(Adherent* adherent) {
-    listeAdherents.push_back(adherent);
-    cout << "Adhérent \"" << adherent->getNom() << "\" ajouté avec succès." << endl;
+void Bibliotheque::ajouterAdherent(const Adherent& adherent) {
+    Adherent* nouvelAdherent = new Adherent(adherent);
+    nouvelAdherent->suivant = listeAdherents;
+    listeAdherents = nouvelAdherent;
+    cout << "Adhérent ajouté avec succès : " << adherent.gentom() << endl;
 }
 
-// Supprimer un adhérent par numéro
+// Supprimer un adhérent par son numéro
 void Bibliotheque::supprimerAdherent(int numeroAdherent) {
-    auto it = find_if(listeAdherents.begin(), listeAdherents.end(), 
-                      [numeroAdherent](Adherent* adherent) { return adherent->getNumero() == numeroAdherent; });
-
-    if (it != listeAdherents.end()) {
-        cout << "Adhérent \"" << (*it)->getNom() << "\" supprimé avec succès." << endl;
-        listeAdherents.erase(it);
-    } else {
-        cout << "Erreur : Aucun adhérent avec le numéro " << numeroAdherent << " trouvé." << endl;
+    Adherent** courant = &listeAdherents;
+    while (*courant) {
+        if ((*courant)->getnumero() == numeroAdherent) {
+            Adherent* aSupprimer = *courant;
+            *courant = (*courant)->suivant;
+            delete aSupprimer;
+            cout << "Adhérent avec le numéro " << numeroAdherent << " supprimé." << endl;
+            return;
+        }
+        courant = &((*courant)->suivant);
     }
+    cout << "Erreur : Adhérent avec le numéro " << numeroAdherent << " non trouvé." << endl;
 }
 
 // Emprunter un livre
 void Bibliotheque::emprunterLivre(int codeLivre, int numeroAdherent) {
-    auto adherent = find_if(listeAdherents.begin(), listeAdherents.end(), 
-                            [numeroAdherent](Adherent* a) { return a->getNumero() == numeroAdherent; });
-
-    if (adherent == listeAdherents.end()) {
-        cout << "Erreur : Adhérent avec le numéro " << numeroAdherent << " introuvable." << endl;
-        return;
+    Livre* livre = listeLivres;
+    while (livre) {
+        if (livre->getcode() == codeLivre && livre->getetat() == "libre") {
+            Adherent* adherent = listeAdherents;
+            while (adherent) {
+                if (adherent->getnumero() == numeroAdherent) {
+                    livre->setetat("emprunté");
+                    adherent->emprunter(*livre);
+                    cout << "Livre emprunté par l'adhérent : " << adherent->gentom() << endl;
+                    return;
+                }
+                adherent = adherent->suivant;
+            }
+            cout << "Erreur : Adhérent avec le numéro " << numeroAdherent << " non trouvé." << endl;
+            return;
+        }
+        livre = livre->suivant;
     }
-
-    auto livre = find_if(listeLivres.begin(), listeLivres.end(), 
-                         [codeLivre](Livre* l) { return l->getCode() == codeLivre && l->getEtat() == "libre"; });
-
-    if (livre != listeLivres.end()) {
-        (*livre)->setEtat("emprunté");
-        cout << "Livre \"" << (*livre)->getTitre() << "\" emprunté par l'adhérent \"" << (*adherent)->getNom() << "\"." << endl;
-    } else {
-        cout << "Erreur : Livre avec le code " << codeLivre << " introuvable ou non disponible." << endl;
-    }
+    cout << "Erreur : Livre avec le code " << codeLivre << " non disponible." << endl;
 }
 
 // Rendre un livre
 void Bibliotheque::rendreLivre(int codeLivre, int numeroAdherent) {
-    auto livre = find_if(listeLivres.begin(), listeLivres.end(), 
-                         [codeLivre](Livre* l) { return l->getCode() == codeLivre && l->getEtat() == "emprunté"; });
-
-    if (livre != listeLivres.end()) {
-        (*livre)->setEtat("libre");
-        cout << "Livre \"" << (*livre)->getTitre() << "\" retourné avec succès." << endl;
-    } else {
-        cout << "Erreur : Livre avec le code " << codeLivre << " non trouvé ou n'était pas emprunté." << endl;
-    }
-}
-
-// Demander un livre d'une autre bibliothèque
-void Bibliotheque::demanderLivreAutreBibliotheque(string isbn, Bibliotheque& autreBibliotheque) {
-    auto livre = find_if(autreBibliotheque.listeLivres.begin(), autreBibliotheque.listeLivres.end(), 
-                         [isbn](Livre* l) { return l->getISBN() == isbn && l->getEtat() == "libre"; });
-
-    if (livre != autreBibliotheque.listeLivres.end()) {
-        Livre* copieLivre = new Livre(**livre);
-        copieLivre->setEtat("emprunté");
-        ajouterLivre(copieLivre);
-        (*livre)->setEtat("prêté");
-        cout << "Livre avec ISBN " << isbn << " emprunté depuis une autre bibliothèque." << endl;
-    } else {
-        cout << "Erreur : Livre avec ISBN " << isbn << " non disponible dans l'autre bibliothèque." << endl;
-    }
-}
-
-// Récupérer les livres prêtés
-void Bibliotheque::rendreLivresPretes() {
-    for (auto livre : listeLivres) {
-        if (livre->getEtat() == "prêté") {
-            livre->setEtat("libre");
-            cout << "Livre \"" << livre->getTitre() << "\" récupéré avec succès." << endl;
+    Livre* livre = listeLivres;
+    while (livre) {
+        if (livre->getcode() == codeLivre && livre->getetat() == "emprunté") {
+            livre->setetat("libre");
+            cout << "Livre avec le code " << codeLivre << " retourné avec succès." << endl;
+            return;
         }
+        livre = livre->suivant;
     }
+    cout << "Erreur : Livre avec le code " << codeLivre << " non trouvé ou n'était pas emprunté." << endl;
 }
 
 // Getters et Setters
-string Bibliotheque::getNom() { return nom; }
-string Bibliotheque::getAdresse() { return adresse; }
-int Bibliotheque::getCode() { return code; }
-int Bibliotheque::getNombreLivres() { return nombreLivres; }
-int Bibliotheque::getCapaciteMax() { return capaciteMax; }
+string Bibliotheque::getNom() const { return nom; }
+string Bibliotheque::getAdresse() const { return adresse; }
+int Bibliotheque::getCode() const { return code; }
+Livre* Bibliotheque::getListeLivres() const { return listeLivres; }
+Adherent* Bibliotheque::getListeAdherents() const { return listeAdherents; }
+int Bibliotheque::getCapaciteMax() const { return capaciteMax; }
+int Bibliotheque::getNombreLivres() const { return nombreLivres; }
 
+void Bibliotheque::setNom(const string& nom) { this->nom = nom; }
+void Bibliotheque::setAdresse(const string& adresse) { this->adresse = adresse; }
+void Bibliotheque::setCode(int code) { this->code = code; }
+void Bibliotheque::setCapaciteMax(int capaciteMax) { this->capaciteMax = capaciteMax; }
+void Bibliotheque::setNombreLivres(int nombreLivres) { this->nombreLivres = nombreLivres; }
