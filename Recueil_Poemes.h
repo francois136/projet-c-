@@ -7,16 +7,13 @@ using namespace std;
 class Receuil_Poemes:
 		public Livre {
     private:
-        string formatpoeme ;     // Nom de l'illustrateur
+        string formatPoeme ;     // Nom de l'illustrateur
     public:
-        Recueil_Poemes(string auteur, string titre, string editeur, string isbn, string format_poeme);
-        Recueil_Poemes(Livre& livre, string& format_poeme); // Constructeur de recopie
+        Recueil_Poemes(string auteur, string titre, string editeur, string isbn, string formatPoeme);
+        Recueil_Poemes(Livre& livre, string& formatPoeme); // Constructeur de recopie
 
-        string getformat_poeme(); //getter
-        void setformat_poeme(string); //setter
-        
-        // Méthode pour afficher les détails spécifiques à une bande dessinée
-        void afficher_details();
+        string getformatPoeme(); //getter
+        void setformatPoeme(string); //setter
 
         // Destructeur
         virtual ~Recueil_Poemes();
