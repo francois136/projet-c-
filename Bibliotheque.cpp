@@ -36,7 +36,6 @@ void Bibliotheque::ajouterLivre(const Livre& livre) {
     nouveauLivre->suivant = listeLivres;
     listeLivres = nouveauLivre;
     nombreLivres++;
-    cout << "Livre ajouté avec succès : " << livre.gettitre() << endl;
 }
 
 // Afficher les livres disponibles
@@ -46,11 +45,10 @@ void Bibliotheque::afficherLivres() const {
         return;
     }
 
-    Livre* courant = listeLivres;
-    cout << "Livres dans la bibliothèque : " << endl;
+    Livre* livre = listeLivres;
     while (courant) {
-        courant->afficher_details();
-        courant = courant->suivant;
+        livre->afficher_details();
+        livre = livre->suivant;
     }
 }
 
@@ -63,7 +61,6 @@ void Bibliotheque::supprimerLivre(int codeLivre) {
             *courant = (*courant)->suivant;
             delete aSupprimer;
             nombreLivres--;
-            cout << "Livre avec le code " << codeLivre << " supprimé." << endl;
             return;
         }
         courant = &((*courant)->suivant);
@@ -76,7 +73,6 @@ void Bibliotheque::ajouterAdherent(const Adherent& adherent) {
     Adherent* nouvelAdherent = new Adherent(adherent);
     nouvelAdherent->suivant = listeAdherents;
     listeAdherents = nouvelAdherent;
-    cout << "Adhérent ajouté avec succès : " << adherent.gentom() << endl;
 }
 
 // Supprimer un adhérent par son numéro
@@ -87,7 +83,6 @@ void Bibliotheque::supprimerAdherent(int numeroAdherent) {
             Adherent* aSupprimer = *courant;
             *courant = (*courant)->suivant;
             delete aSupprimer;
-            cout << "Adhérent avec le numéro " << numeroAdherent << " supprimé." << endl;
             return;
         }
         courant = &((*courant)->suivant);
