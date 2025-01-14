@@ -18,7 +18,7 @@ class Livre{
         Livfre(int,string,string,string,string,string,string,Bibliotheque);
         Livre();
         void changer_etat(nouvel_etat);
-        void afficher_details();
+        virtual void afficher_details() = 0;
         
         int getcode();
         string getauteur();
