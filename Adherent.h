@@ -10,11 +10,11 @@ class Adherent{
     string adresse;
     int numero;
     Bibliotheque bibliotheque;
-    Livre* Livresempruntes;
+    list<Livre> Livresempruntes;
     int maxLivres;
   public:
     Adherent(string,string,string,int,Bibliotheque,int);
-    Adherent();
+    Adherent(Bibliotheque);
     void emprunter(int);
     void retourner(int);
 
@@ -23,15 +23,15 @@ class Adherent{
     string getadress();
     int getnumero();
     Bibliotheque getbibliotheque();
-    Livre* getlivresempruntes();
+    list<Livre> getlivresempruntes();
     int getmaxLivres();
 
-    void sentom(string);
+    void sentnom(string);
     void setprenom(string);
-    void setadress(string);
+    void setadresse(string);
     void setnumero(int);
-    void setbibliotheque(Bibliothéque);
-    doid setlivresempruntes(Livre*);
+    void setbibliotheque(Biblioteque);
+    doid setlivresempruntes(list<Livre>);
     void setmaxLivres(int);
 }
 
