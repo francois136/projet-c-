@@ -1,31 +1,27 @@
 #include <iostream>
-#include "BandeDessinee.h"
+#include "Album.h"
 
 using namespace std;
 
 // Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-Album::BandeDessinee(string auteur, string titre, string editeur, string isbn, string typeIllustration)
-    : Livre(auteur, titre, editeur, isbn), typeIllustration(typeIllustration) {}
+Album::Album(string auteur, string titre, string editeur, string isbn, string illustration)
+    : Livre(auteur, titre, editeur, isbn), illustration(illustration) {}
 
 // Constructeur de recopie
-Album::BandeDessinee(Livre* livre, string typeIllustration)
-    : Livre(livre), typeIllustration(typeIllustration) {}
+Album::Album(Livre livre, string illustration)
+    : Livre(livre), illustration(illustration) {}
 
-// Getter pour le genre
-string Album::gettypeillustration() {
-    return typeIllustration;
+// Getter pour formatPoeme
+string Album::getillustration() {
+    return illustration;
 }
 
-// Setter pour le genre
-void Album::settypeIllustration(string nouveautype) {
-	typeIllustration = nouveautype;
-}
-
-// Afficher les détails spécifiques à une bande dessinée
-void Album::afficher_details() {
-    Livre::afficher_details(); // Appel de la méthode de la classe de base
-    cout << "Dessinateur : " << dessinateur << endl;
+// Setter pour formatPoeme
+void Album::setillustration(string nouveauillustration) {
+    illustration = nouveauillustration;
 }
 
 // Destructeur
-Album::~Album() {}
+Album::~Album() {
+    // Nettoyage si nécessaire
+}
