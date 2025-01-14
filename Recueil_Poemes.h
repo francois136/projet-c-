@@ -7,7 +7,7 @@ using namespace std;
 class Receuil_Poemes:
 		public Livre {
     private:
-        string format_poeme ;     // Nom de l'illustrateur
+        string formatpoeme ;     // Nom de l'illustrateur
     public:
         Recueil_Poemes(string auteur, string titre, string editeur, string isbn, string format_poeme);
         Recueil_Poemes(Livre& livre, string& format_poeme); // Constructeur de recopie
