@@ -14,6 +14,7 @@ class Livre{
         string publics;
         string etat;
         Bibliotheque bibliothequeOrigine;
+        Livre* suivant;
     public:
         Livfre(int,string,string,string,string,string,string,Bibliotheque);
         Livre();
@@ -37,6 +38,7 @@ class Livre{
         void setpublics(string);
         void setetat(string);
         void setbibliotheque(Bibliotheque);
+        Friend class Bibliotheque;
 
         
 }
