@@ -4,24 +4,24 @@
 using namespace std;
 
 // Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-RecueilPoemes::RecueilPoemes(string auteur, string titre, string editeur, string isbn, string formatPoeme)
+Recueil_Poemes::Recueil_Poemes(string auteur, string titre, string editeur, string isbn, string formatPoeme)
     : Livre(auteur, titre, editeur, isbn), formatPoeme(formatPoeme) {}
 
 // Constructeur de recopie
-RecueilPoemes::RecueilPoemes(Livre livre, string formatPoeme)
+Recueil_Poemes::Recueil_Poemes(Livre livre, string formatPoeme)
     : Livre(livre), formatPoeme(formatPoeme) {}
 
 // Getter pour formatPoeme
-string RecueilPoemes::getFormatPoeme() {
+string Recueil_Poemes::getFormatPoeme() {
     return formatPoeme;
 }
 
 // Setter pour formatPoeme
-void RecueilPoemes::setFormatPoeme(string nouveauFormatPoeme) {
+void Recueil_Poemes::setFormatPoeme(string nouveauFormatPoeme) {
     formatPoeme = nouveauFormatPoeme;
 }
 
 // Destructeur
-RecueilPoemes::~RecueilPoemes() {
+Recueil_Poemes::~Recueil_Poemes() {
     // Nettoyage si nécessaire
 }
