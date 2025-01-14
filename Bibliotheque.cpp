@@ -5,15 +5,25 @@
 
 using namespace std;
 
-// Constructeur par défaut
-Bibliotheque::Bibliotheque()
-    : nom(""), adresse(""), code(0), listeLivres(nullptr), listeAdherents(nullptr),
-      capaciteMax(100), nombreLivres(15) {}
+Bibliotheque::Bibliotheque(){
+    nom = "";
+    adresse = "";
+    code = 0;
+    listeLivres = nullptr;
+    listeAdherent = nullptr;
+    capaciteMax = 100;
+    nombreLivres = 0
+}
 
-// Constructeur paramétré
-Bibliotheque::Bibliotheque(const string& nom, const string& adresse, int code, int capaciteMax, int nombreLivres)
-    : nom(nom), adresse(adresse), code(code), listeLivres(nullptr), listeAdherents(nullptr),
-      capaciteMax(capaciteMax), nombreLivres(nombreLivres) {}
+Bibliotheque::Bibliotheque(string n, string adresse, int code, int capaciteMax)
+    nom = n;
+    adresse = a;
+    code = c;
+    capaciteMax = m;
+    nombreLivres = 0;
+    listeLivres = nullptr;
+    listeAdherent = nullptr;
+}
 
 // Ajouter un livre à la bibliothèque
 void Bibliotheque::ajouterLivre(const Livre& livre) {
