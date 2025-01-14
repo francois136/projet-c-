@@ -14,9 +14,6 @@ class BandeDessinee:
 
         string getDessinateur(); //getter
         void setDessinateur(string); //setter
-        
-        // Méthode pour afficher les détails spécifiques à une bande dessinée
-        void afficher_details();
 
         // Destructeur
         virtual ~BandeDessinee();
