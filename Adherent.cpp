@@ -11,6 +11,7 @@ Adherent::Adherent(string n,string p,string a,int n,Bibliotheque b,int m){
     bibliotheque = b;
     maxLivres = m;
     Livresempruntes = {};
+    suivant = nullptr;
 }
 
 Adherent::Adherent(Bibliotheque b){
@@ -20,6 +21,7 @@ Adherent::Adherent(Bibliotheque b){
     numero = 0;
     bibliotheque = b;
     Livresempruntes = {};
+    suivant = nullptr;
 }
 
 void Adherent::emprunter(Livre livre) {
