@@ -1,27 +1,26 @@
 #include <iostream>
 #include "Album.h"
-
+#include "template.cpp"
+#include "Bibliotheque.h"
 using namespace std;
 
-// Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-Album::Album(string auteur, string titre, string editeur, string isbn, string illustration)
-    : Livre(auteur, titre, editeur, isbn), illustration(illustration) {}
+Album::Album(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string illustration)
+    : Livre(code, auteur, titre, editeur, isbn, publics, etat, bibliothequeOrigine), illustration(illustration) {}
 
-// Constructeur de recopie
-Album::Album(Livre livre, string illustration)
+Album::Album(Livre& livre, string illustration)
     : Livre(livre), illustration(illustration) {}
 
-// Getter pour formatPoeme
 string Album::getillustration() {
     return illustration;
 }
 
-// Setter pour formatPoeme
-void Album::setillustration(string nouveauillustration) {
-    illustration = nouveauillustration;
+void Album::setsillustration(string nouvelleIllustration) {
+    illustration = nouvelleIllustration;
 }
 
-// Destructeur
-Album::~Album() {
-    // Nettoyage si nécessaire
+void Album::afficher_details() {
+    afficher_details_template(*this);
+    cout << "Illustration: " << illustration << endl;
 }
+
+Album::~Album() {}

@@ -1,22 +1,20 @@
-#ifndef ALBUM_H_
-#define ALBUM_H_
+#ifndef ALBUM_H
+#define ALBUM_H
 #include <iostream>
-using namespace std;
 #include "Livre.h"
+#include "Bibliotheque.h"
+using namespace std;
 
-class Album:
-		public Livre {
+class Album : public Livre {
     private:
-        string illustration ;     // Nom de l'illustrateur
+        string illustration ;
     public:
-        Album(string auteur, string titre, string editeur, string isbn, string illustration);
-        Album(Livre& livre, string& illustration); // Constructeur de recopie
-
-        string getillustration(); //getter
-        void setsillustration(string); //setter
-
-        // Destructeur
+        Album(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string illustration);
+        Album(Livre& livre, string illustration);
+        string getillustration();
+        void setsillustration(string);
+        void virtual afficher_details();
         virtual ~Album();
 };
 
-#endif /* ALBUM_H_ */
+#endif

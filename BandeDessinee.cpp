@@ -1,25 +1,27 @@
 #include <iostream>
 #include "BandeDessinee.h"
-
+#include "template.cpp"
+#include "Bibliotheque.h"
 using namespace std;
 
-// Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-BandeDessinee::BandeDessinee(string auteur, string titre, string editeur, string isbn, string dessinateur)
-    : Livre(auteur, titre, editeur, isbn), dessinateur(dessinateur) {}
+BandeDessinee::BandeDessinee(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string dessinateur)
+    : Livre(code, auteur, titre, editeur, isbn, publics, etat, bibliothequeOrigine), 
+    dessinateur(dessinateur) {}
 
-// Constructeur de recopie
-BandeDessinee::BandeDessinee(Livre* livre, string dessinateur)
+BandeDessinee::BandeDessinee(Livre& livre, string dessinateur)
     : Livre(livre), dessinateur(dessinateur) {}
 
-// Getter pour le genre
-string BandeDessinee::getDessinateur() {
+string BandeDessinee::getDessinateur(){
     return dessinateur;
 }
 
-// Setter pour le genre
-void BandeDessinee::setDessinateur(string nouveauDessinateur) {
-	dessinateur = nouveauDessinateur;
+void BandeDessinee::setDessinateur(string nouveauDessinateur){
+    dessinateur = nouveauDessinateur;
 }
 
-// Destructeur
+void BandeDessinee::afficher_details(){ 
+    afficher_details_template(*this); 
+    cout << "Dessinateur: " << dessinateur << endl;
+}
+
 BandeDessinee::~BandeDessinee() {}

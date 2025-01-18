@@ -1,22 +1,20 @@
-#ifndef BANDEDESSINEED_H_
-#define BANDEDESSINEE_H_
+#ifndef BANDEDESSINE_H
+#define BANDEDESSINE_H
+#include "Bibliotheque.h"
 #include <iostream>
-using namespace std;
 #include "Livre.h"
+using namespace std;
 
-class BandeDessinee:
-		public Livre {
+class BandeDessinee : public Livre{
     private:
-        string dessinateur ;     // Nom de l'illustrateur
+        string dessinateur;
     public:
-        BandeDessinee(string auteur, string titre, string editeur, string isbn, string dessinateur);
-        BandeDessinee(Livre& livre, string& dessinateur); // Constructeur de recopie
-
-        string getDessinateur(); //getter
-        void setDessinateur(string); //setter
-
-        // Destructeur
+        BandeDessinee(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string dessinateur);
+        BandeDessinee(Livre&,string);
+        string getDessinateur();
+        void setDessinateur(string);
+        void virtual afficher_details();
         virtual ~BandeDessinee();
 };
 
-#endif /* BANDEDESSINEE_H_ */
+#endif

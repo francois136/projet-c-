@@ -1,27 +1,28 @@
 #include <iostream>
 #include "Roman.h"
-
+#include "template.cpp"
+#include "Bibliotheque.h"
 using namespace std;
 
-// Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-Roman::Roman(string auteur, string titre, string editeur, string isbn, string genre)
-    : Livre(auteur, titre, editeur, isbn), genre(genre) {}
+Roman::Roman(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string genre)
+    :Livre(code, auteur, titre, editeur, isbn, publics, etat, bibliothequeOrigine),
+    genre(genre) {}
 
-// Constructeur de recopie
-Roman::Roman(Livre livre, string genre)
-    : Livre(livre), genre(genre) {}
+Roman::Roman(Livre& livre, string genre)
+    : Livre(livre), 
+    genre(genre) {}
 
-// Getter pour formatPoeme
 string Roman::getgenre() {
     return genre;
 }
 
-// Setter pour formatPoeme
-void Roman::setgenre(string nouveaugenre) {
-    genre = nouveaugenre;
+void Roman::setgenre(string nouveauGenre) {
+    genre = nouveauGenre;
 }
 
-// Destructeur
-Roman::~Roman() {
-    // Nettoyage si nécessaire
+void Roman::afficher_details() {
+    afficher_details_template(*this);
+    cout << "Genre: " << genre << endl;
 }
+
+Roman::~Roman() {}

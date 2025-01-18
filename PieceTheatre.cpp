@@ -1,27 +1,27 @@
 #include <iostream>
 #include "PieceTheatre.h"
-
+#include "Template.cpp"
+#include "Bibliotheque.h"
 using namespace std;
 
-// Constructeur prenant les attributs spécifiques et appelant le constructeur de Livre
-PieceTheatre::PieceTheatre(string auteur, string titre, string editeur, string isbn, string siecle)
-    : Livre(auteur, titre, editeur, isbn), siecle(siecle) {}
+PieceTheatre::PieceTheatre(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string siecle)
+    :Livre(code, auteur, titre, editeur, isbn, publics, etat, bibliothequeOrigine), 
+    siecle(siecle) {}
 
-// Constructeur de recopie
-PieceTheatre::PieceTheatre(Livre livre, string siecle)
+PieceTheatre::PieceTheatre(Livre& livre, string siecle)
     : Livre(livre), siecle(siecle) {}
 
-// Getter pour formatPoeme
 string PieceTheatre::getsiecle() {
     return siecle;
 }
 
-// Setter pour formatPoeme
-void PieceTheatre::setsiecle(string nouveausiecle) {
-    siecle = nouveausiecle;
+void PieceTheatre::setsiecle(string nouveauSiecle) {
+    siecle = nouveauSiecle;
 }
 
-// Destructeur
-PieceTheatre::~PieceTheatre() {
-    // Nettoyage si nécessaire
+void PieceTheatre::afficher_details() {
+    afficher_details_template(*this);
+    cout << "Siècle: " << siecle << endl;
 }
+
+PieceTheatre::~PieceTheatre() {}

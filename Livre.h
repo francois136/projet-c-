@@ -1,6 +1,6 @@
 #ifndef LIVRE_H
 #define LIVRE_H
-#include BIBLIOTHEQUE_H
+#include "Bibliotheque.h"
 #include <string>
 using namespace std;
 
@@ -16,11 +16,12 @@ class Livre{
         Bibliotheque bibliothequeOrigine;
         Livre* suivant;
     public:
-        Livfre(int,string,string,string,string,string,string,Bibliotheque);
-        Livre();
-        void changer_etat(nouvel_etat);
+        Livre(int,string,string,string,string,string,string,Bibliotheque);
+        Livre(Bibliotheque);
+        void changer_etat(string);
         virtual void afficher_details() = 0;
-        
+        virtual ~Livre() {};
+
         int getcode();
         string getauteur();
         string gettitre();
@@ -38,9 +39,8 @@ class Livre{
         void setpublics(string);
         void setetat(string);
         void setbibliotheque(Bibliotheque);
-        Friend class Bibliotheque;
-
-        
-}
+    friend class Bibliotheque;
+    friend class Adherent;
+};
 
 #endif

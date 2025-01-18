@@ -1,22 +1,20 @@
-#ifndef PIECETHEATRE_H_
-#define PIECETHEATRE_H_
+#ifndef PIECETHEATRE_H
+#define PIECETHEATRE_H
 #include <iostream>
-using namespace std;
 #include "Livre.h"
+#include "Bibliotheque.h"
+using namespace std;
 
-class PieceTheatre:
-		public Livre {
+class PieceTheatre : public Livre {
     private:
-        string siecle ;     // Nom de l'illustrateur
+        string siecle;
     public:
-        PieceTheatre(string auteur, string titre, string editeur, string isbn, string siecle);
-        PieceTheatre(Livre& livre, string& siecle); // Constructeur de recopie
-
-        string getsiecle(); //getter
-        void setsiecle(string); //setter
-
-        // Destructeur
+        PieceTheatre(int code, string auteur, string titre, string editeur, string isbn, string publics, string etat, Bibliotheque bibliothequeOrigine, string siecle);
+        PieceTheatre(Livre& livre, string siecle);
+        string getsiecle();
+        void setsiecle(string);
+        void virtual afficher_details();
         virtual ~PieceTheatre();
 };
 
-#endif /* PIECETHEATRE_H_ */
+#endif

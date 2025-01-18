@@ -1,10 +1,13 @@
 #ifndef ADHERENT_H
-#include ADHERENT_H
+#define ADHERENT_H
+#include "Bibliotheque.h"
 #include <string>
+#include <list>
 using namespace std;
 
+
 class Adherent{
-  private:
+  protected:
     string nom;
     string prenom;
     string adresse;
@@ -31,9 +34,10 @@ class Adherent{
     void setprenom(string);
     void setadresse(string);
     void setnumero(int);
-    void setbibliotheque(Biblioteque);
+    void setbibliotheque(Bibliotheque);
     void setlivresempruntes(list<Livre>);
     void setmaxLivres(int);
-}
+    friend class Bibliotheque;
+};
 
 #endif

@@ -1,12 +1,21 @@
-#include "Livre.h"
 #include <iostream>
+#include "Livre.h"
+#include "Bibliotheque.h"
 using namespace std;
 
-void Livre::changer_etat(nouvel_etat){
-    etat = nouvel_etat;
+Livre::Livre(int c, string a, string t, string e, string i, string p, string et, Bibliotheque b){
+    code = c;
+    auteur = a;
+    titre = t;
+    editeur = e;
+    isbn = i;
+    publics = p;
+    etat = et;
+    bibliothequeOrigine = b;
+    suivant = nullptr;
 }
 
-Livre::Livre(){
+Livre::Livre(Bibliotheque b){
     code = 0;
     auteur = "";
     titre = "";
@@ -14,60 +23,74 @@ Livre::Livre(){
     isbn = "";
     publics = "";
     etat = "";
-    bibliothequeOrigine = null;
-    suivant = nullptr;
-
-}
-Livre::Livfre(int c,string a,string t,string ed,string i,string p,string e ,Bibliotheque b){
-    code = c;
-    auteur = a;
-    titre = t;
-    editeur = ed;
-    isbn = i;
-    publics = p;
-    etat = e;
     bibliothequeOrigine = b;
     suivant = nullptr;
 }
 
-void Livre::afficher_details(){
-    cout << "code : " << code << endl;
-    cout << "auteur : " << auteur << endl;
-    cout << "titre : " << titre << endl;
-    cout << "editeur : " << editeur << endl;
-    cout << "numéro isbn : " << isbn << endl;
-    cout << "public : " << publics << endl;
-    cout << "état : " << etat << endl;
-    cout << "bibliothèque" << bibliotheque << endl;
+void Livre::changer_etat(string nouvel_etat) {
+    etat = nouvel_etat;
 }
 
-int Livre::getcode(){
-    return code;
-}
-string Livre::getauteur(){
+int Livre::getcode() {
     return code;
 }
 
-string Livre::gettitre(){
+string Livre::getauteur() {
+    return auteur;
+}
+
+string Livre::gettitre() {
     return titre;
 }
 
-string Livre::getediteur(){
+string Livre::getediteur() {
     return editeur;
 }
 
-string Livre::getisbn(){
+string Livre::getisbn() {
     return isbn;
 }
 
-string Livre::getpublics(){
+string Livre::getpublics() {
     return publics;
 }
 
-string Livre::getetat(){
+string Livre::getetat() {
     return etat;
 }
 
-Bibliotheque Livre::getbibliotheque(){
-    return bibliotheque;
+Bibliotheque Livre::getbibliotheque() {
+    return bibliothequeOrigine;
+}
+
+void Livre::setcode(int c) {
+    code = c;
+}
+
+void Livre::setauteur(string a) {
+    auteur = a;
+}
+
+void Livre::settitre(string t) {
+    titre = t;
+}
+
+void Livre::setediteur(string e) {
+    editeur = e;
+}
+
+void Livre::setisbn(string i) {
+    isbn = i;
+}
+
+void Livre::setpublics(string p) {
+    publics = p;
+}
+
+void Livre::setetat(string et) {
+    etat = et;
+}
+
+void Livre::setbibliotheque(Bibliotheque b) {
+    bibliothequeOrigine = b;
 }
